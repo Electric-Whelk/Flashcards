@@ -22,28 +22,33 @@ int main(void)
 {
   printf("\n");
   test();
+  time_t s = time(NULL);
+  srand(s);
 
   char* file = "cards.txt";
-  int max = 37; //suggest making a "maxfind" function to figure it out for you
+  int max = 59; //suggest making a "maxfind" function to figure it out for you
   int deck[ARB];
 
   deckfill(deck, max);
   shuffle(deck, max);
 
+  printf("\n");
+
   for(int i = 1; i < max; i++){
-    int test = deck[i] % 10;
+    int q = deck[i];
+    int test = q % 10;
     if(test != 0){
-      fetch(file, test);
-      printf("\nHit any key for answer: \n");
+      fetch(file, q);
+      printf("\nHit any letter key for answer (or ctrl+c to quit): \n");
       char response;
-      scanf("%c", &response);
+      scanf("%c ", &response);
       printf("\n");
-      int a = test * 10;
+      int a = q * 10;
       fetch(file, a);
-      printf("Hit any key for next question: \n");
+      printf("Hit any letter key for next question (or ctrl+c to quit): \n");
       char response2;
-      scanf("%c%c", &response, &response2);
-      printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+      scanf("%c ", &response2);
+      printf("\n\n\n\n");
 
     }
   }
@@ -72,28 +77,18 @@ void shuffle(int* array, int max)
 {
 
   int a, b;
-  printf("Initialising! Please enter a four digit number to randomise: ");
-  scanf("%i", &a);
-  printf("Now enter another one: ");
-  scanf("%i", &b);
   for (int i = 0; i < max; i++){
-    int n1 = b % max;
-    int n2 = a % max;
+    int n1 = rnjesus(max);
+    int n2 = rnjesus(max);
     int c = array[n1];
     array[n1] = array[n2];
     array[n2] = c;
-    b += 33;
-    a += 94;
   }
 }
 
 int rnjesus(int max)
 {
-  time_t s;
-  s = time(NULL);
-  int outp;
-  max++;
-  outp = s % max;
+  int outp = rand() % max;
   return outp;
 }
 

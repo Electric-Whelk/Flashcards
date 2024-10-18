@@ -21,7 +21,7 @@ Week 1
 4
 What are the natural terms for the following logical operators: Negation, Complement, Conjunction, Disjunction, Exclusive Disjunction, Implication, Equivalence? 
 40
-Negation and Compliment are both NOT! Conjunction is AND, disjunction is OR,exc. disjunction is XOR. Implication and equivalence are already natural terms for it, so remember that implication: notA or B, and equivalence is (notAor B) and (notB or A). 
+Negation and Compliment are both NOT. Conjunction is AND, disjunction is OR,exc. disjunction is XOR. Implication and equivalence are already natural terms for it, so remember that implication: notA or B, and equivalence is (notAor B) and (notB or A). 
 
 5
 How do you translate a truth table into Disjunctive Normal Form? 
@@ -178,4 +178,104 @@ Start with an R-S latch. S' is (en nand D), R' is fed by (en nand notD).
 37 
 What is a D flip-flop?
 370
-Outputs 
+Takes an input, D, and an enable signal (usually a clock). When the enable signal is activated, output Q is equal to D, and holds that until enable is next activated.
+
+38
+How do you make a negative triggered D flip-flop?
+380
+You use two D latches, a "leader" or "primary" and a "follower" or "secondary", with the output for the leader being the D-input for the follower. They both run off the same enable signal, but the signal is NOTted going into the follower. 
+
+39
+How do you make a positive triggered D flip-flop?
+390
+Two D latches, a "leader" or "primary" and a "follower" or "secondary", with the output from the leader being the D-input for the folloewr. The enable signal is NOTted on its way to the leader, then split off and NOTted again for the follower.
+
+41
+What is, in principle, the difference between a latch and a flip flop?
+410
+A latch is level-triggered and a flip-flop is edge triggered. 
+
+42
+How long does the gap between rising edges on a CLK signal need to be?
+420
+It has to be as long as the maximum propagation delay.
+
+43
+What are the SI unit prefixes in order low to high for when ten is raised to a positive exponent, and what interval does that exponent increase in between each one? 
+430
+Kilo, Mega, Giga, Tera, Peta. It increases by 3 each time (so a Kilo is 10^3, Mega is 10^6, and Peta is 10^15, etc).
+
+44
+What are the SI unit prefixes in order from high to low for when ten is raised to a negative exponent, and what interval does that exponent decrease by between each one?
+440
+Milli, Micro, Nano, Pico. It decreases by 3 each time (so Milli is 10^-3, Micro is 10^-6, Pico is 10^-12, etc).
+
+45
+What is a D register?
+450
+A D register has one output, "out", and two inputs, "load", and "in", plus a clock circut. On a rising clock edge, if "load" is high,  "out" is equal to "in". Otherwise, "out" holds its previous value. 
+
+46
+How do we build a D register?
+460
+We use a 2-input multiplexer and a D flipflop. The multiplexer feeds the D signal for the input, while the clock feeds its enable signal. The control bit of the multiplexer is our "load" input, and the two signals that the multiplexer chooses between are a) our "in" input and b) the output of the whole system. 
+
+47
+What is a "bus", in a computer architecture context? 
+470
+A bus is a multi-bit binary wire - essentially it's a whole bunch of wires together that we are conceputalising as a single wire. 
+
+48
+What is a "word", in the context of computer memory?
+480
+A word is a binary number stored by a register. We think of words having a "word size" in bits. 
+
+49
+What is an "address", in the context of computer memory? 
+490
+Since computer memory behaves like a collection of registers, we differentiate between these registers by giving each one a different "address". The output of a memory circuit always gives the output of a register with a given adress, and changing this is immmediate; it doesn't happen on a clock tick.
+
+51
+What is "address space", in the context of computer memory?
+510
+Address space is the set of all valid addresses in a memory circuit.
+
+52
+What is a "cell", in the context of computer memory?
+520
+A cell is single 1 bit register within a larger memory circuit. 
+
+53
+What is "volatile" memory?
+530
+Memory that only keeps information as long as the system is supplied with power. 
+
+54
+What is ROM, and when might it be used?
+540
+ROM is "Read Only Memory". Writing to it physically alters the chip and only happens once. The advantage to this is that it has faster access times and lower cost than other non-volatile memory, so it is used in, for example, non-upgradeable firmware.
+
+55
+What type of memory makes up most modern non-volatile memory?
+550
+Electrically Erasable Programmable ROM, or "EEPROM", which is a family of memory technologies including flash memory. EEPROM can be electronically erased and re-written, although this happens more slowly than ram. 
+
+56
+What is SRAM?
+560
+SRAM is "static RAM", and is the type of RAM we've been building, though we're making a very inefficient form of it. Modern SRAM circuits need only 4 to 6 transistors.
+
+57
+What is DRAM?
+570
+DRAM is "Dynamic RAM." It works very differently from RAM as we've designed it, and has to be manually refreshed every few ms, and whenever it is read to. This makes it much slower than SRAM. However it is cheaper and higher capacity.
+
+58
+What is SDRAM?
+580
+SDRAM is "synchronised dynamic RAM", and is DRAM that works on a clock circuit. It is an example of the treacherous naming conventions of computer science, as one might think that it is some sort of hybrid between SRAM and DRAM - it is nothing to do with SRAM at all.
+
+59
+What is DDR?
+590
+DDR stands for "Double Data Rate", and DDR1-5 are protocols for data storage to and from DRAM. They are not fundamentally different technologies to it. 
