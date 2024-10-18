@@ -1,0 +1,181 @@
+0
+Initial tests
+
+1
+What is the difference between positive and negative transistors? (what turns them on, what they carry, how they're drawn)
+10
+Positive transistors are turned on by negative charge, carry positive charge, and are drawn with a bubble. Negative transistors are turned on by positive charge, carry negative charge, and are drawn without. 
+
+2
+What is the difference between a Moore and a Mealy Machine?
+20
+A Moore Machine emits a value based on what state it's in. A Mealy Machine emits a value based on how it transitions [CHECK: AS IT TRANSITIONS OR BASED ON ITS LAST TRANSITION?]
+
+3
+What is the difference between a wordline and bitline signal in a SRAM cell?30
+The Wordline controls access to the stored value, the bitline reads/writes the stored value.
+
+0
+Week 1
+
+4
+What are the natural terms for the following logical operators: Negation, Complement, Conjunction, Disjunction, Exclusive Disjunction, Implication, Equivalence? 
+40
+Negation and Compliment are both NOT! Conjunction is AND, disjunction is OR,exc. disjunction is XOR. Implication and equivalence are already natural terms for it, so remember that implication: notA or B, and equivalence is (notAor B) and (notB or A). 
+
+5
+How do you translate a truth table into Disjunctive Normal Form? 
+50
+For each 1 in the output column, AND all the values that produce it, then bracket this statement. then OR all your brackets. 
+
+6
+How do you translate a truth table into Conjunctive Normal Form?
+60
+For each 0 in the output column, AND all the values that produce it, then bracket that statement. Then NOT all your brackets, and then AND them. then use De Morgan's laws to make your brackets contain only OR statements. 
+
+7
+What are De Morgan's laws? 
+70  
+NOT(A and B) is equivalent to (NOTA and NOTB). NOT(A and B) is equivalent to (NOTA and NOTB).
+
+8
+What is the principle of distributivity?
+80
+||(A and B) or (A and C) = A and (B or C) || (A or B) and (A or C) = A or (Band C) || 
+
+9
+What's the shortcut to counting binary-reflected Gray code? (and where would you use it?)
+90
+In binary, start with all bits at zero and flip the right-most bit that produces a previously unseen combination. You use this when numbering rows and colums in Karnaugh maps. 
+
+11
+An AND gate with a bubbled output is equal to what? An OR gate with a bubbled output is equal to what? 
+110
+An AND gate with a bubbled output is equal to an OR gate with each input bubbled. An OR gate with a bubbled outputis equal to an AND gate with each input bubbled. 
+
+12
+How do you make an OR gate out of NAND gates? 
+120
+(A NAND A) NAND (B NAND B)
+
+13
+How do you make a NOR gate out of NAND gates? 
+130
+((A NAND A) NAND (B NAND B)) NANDed with itself
+
+
+14
+How do you make a XOR gate out of NAND gates?
+140
+Assume C = A NAND B. (A NAND C) NAND (B NAND C). 
+
+0
+Week 2 - Representing Numbers
+
+15
+How would you use hexadecimal to write out a long binary number?
+150
+Divide the binary number into 4 bit units, and represent each unit as a single hexadecimal digit (i.e: 1011 = eleven = b). This is possible because the 5th binary digit refers to the number of 16s.   
+
+16
+How would you use octal to write out a long binary number?
+160
+Divide the binary number into 3 bit unites, and represent each unit as a single octal digit (i.e., 111 = 7). This is possible because the 4th binary digit refers to the number of 8s. 
+
+17
+How would you convert between Decimal, Hexadecimal and Octal Base numbers?
+170
+Convert to binary and then convert to the target base, remembering that when converting to and from octal or hexadecimal, you can treat each digit as a three or four bit binary number respectively
+
+18
+If you're working in base N, what are the number of possible values you can store in D digits?
+180
+N to the power of D
+
+19
+What does a half adder output and input, and how do you make one? 
+190
+It takes two 1 digit binary numbers, A and B, adds them, and outputs the result as two digits. It calculates the MSB from (A and B), and the LSB from (A xor B). 
+
+21
+What does a full adder output and input, and how do you make one?
+210
+It adds together three 1 digit binary numbers, A, B and C_in, and outputs the result as two digits. The MSB, generally called C_out, is ((A and B) or (C_in and (A xor B)). The LSB, generally called S, is (A xor B xor C_in). 
+
+22
+What is a ripple-carry adder and how do you make one? 
+220
+A ripple-carry adder is a chain of full adders, where each outputs their S as a single bit, and passes their C_out to be the C_in of the next full adder in the chain. It's also a type of snake that brings water, but the liberal media doesn't want you to know that. 
+
+23
+What is Signed Magnitude representation? Why is it not used very often?
+230
+A binary representation of a number where the MSB represents the sign instead of a number. It's unpopular because it can represent zero as either 0000 or 1000, which is wasteful
+
+24
+What is 1s Complement? Why is it not used very often?
+240
+A binary representation of a number which uses one extra bit and then NOTs the number to communicate that it is a negative value. It's unpopular because it can represent zero as either 0000 or 1111, which is both wasteful and arithemtically problematic (as 1111+1 = 0000 plus an overflow, meaning that 0+1 = 0).
+
+25
+What is 2s complement? Why is it the favoured way of representing signed numbers in modern computing?
+250
+It's a binary representation of a number where the MSB represents its usual value times -1. It's popular because unlike other ways of representing a signed number, there is no "-0", so it frees up a value. 
+
+26
+How do you convert a binary number to it own negative value in 2s complement?
+260
+NOT it and then add 1. 
+
+27
+What are the 6 control bits of a Hack ALU?
+270
+ZX(zeroes the x signal), ZY (zeroes the y signal), NX (NOTs the X signal), NY (NOTs the y signal), NO (NOTs the output) and f, where f=0 ANDs the input signals and f=1 ADDs them. 
+
+28
+What is logx(y)?
+280
+the amount you have to raise x to in order to get y. So log2(8) = 3.
+
+29
+How many control bits do you need for a multiplexer or demultiplexer to choose between N inputs? 
+290
+log2(N) 
+
+31
+What is the difference between NOTting and knotting?
+310
+Don't you fucking dare. 
+
+0
+Week 3
+
+32
+What does an R-S latch do?
+320
+It takes two imputs, R' and S'. These are active-low. When R' is activated, output Q is set to 0 and stays that way until S' is next activated. When S' is activated, Q is set to 1 and stays that way until R' is next activated. 
+
+33
+What does active low vs active high mean?
+330
+"Active low" in a sequential circuit means it is activated by something going from 1 to 0, and active high is the opposite. 
+
+34
+How do you make an R-S latch? 
+340
+Use two NAND gates, which I will here call A and B. A is (S' NAND B), and B is (R' NAND A). The output of A, in addition to being fed into B, is Q, while the output of B is Q'.
+
+35
+What does a D latch do? 
+350
+It takes an input signal, D, and an active-low enable signal, en. While en is high, its output Q is D. When en is activated, it holds the previous output. 
+
+36
+How do we build a D latch?
+360
+Start with an R-S latch. S' is (en nand D), R' is fed by (en nand notD).
+
+37 
+What is a D flip-flop?
+370
+Outputs 
