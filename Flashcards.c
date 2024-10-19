@@ -39,13 +39,13 @@ int main(void)
     int test = q % 10;
     if(test != 0){
       fetch(file, q);
-      printf("\nHit any letter key for answer (or ctrl+c to quit): \n");
+      printf("\nHit any letter + enter key for answer (or ctrl+c to quit): \n");
       char response;
       scanf("%c ", &response);
       printf("\n");
       int a = q * 10;
       fetch(file, a);
-      printf("Hit any letter key for next question (or ctrl+c to quit): \n");
+      printf("Hit any letter key +enter key for next question (or ctrl+c to quit): \n");
       char response2;
       scanf("%c ", &response2);
       printf("\n\n\n\n");
