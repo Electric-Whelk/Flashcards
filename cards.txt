@@ -2,17 +2,18 @@
 Initial tests
 
 1
-What is the difference between positive and negative transistors? (what turns them on, what they carry, how they're drawn)
+What is the difference between positive and negative MOS transistors? (what turns them on, what they carry, how they're drawn)
 10
-Positive transistors are turned on by negative charge, carry positive charge, and are drawn with a bubble. Negative transistors are turned on by positive charge, carry negative charge, and are drawn without. 
+Positive (p-type) teansistors are turned on by Vss charge, carry Vdd charge, and are drawn with a bubble. Negative (n-type) transistors are turned on by Vdd charge, carry Vss charge, and are drawn without. N-types are manufactured to have more electrons, while P-types have "holes", a lack of electron.   
 
 2
 What is the difference between a Moore and a Mealy Machine?
 20
-A Moore Machine emits a value based on what state it's in. A Mealy Machine emits a value based on how it transitions [CHECK: AS IT TRANSITIONS OR BASED ON ITS LAST TRANSITION?]
+A Moore Machine emits a value based on what state it's in. A Mealy Machine emits a value based on how it transitions.
 
 3
-What is the difference between a wordline and bitline signal in a SRAM cell?30
+What is the difference between a wordline and bitline signal in a SRAM cell?
+30
 The Wordline controls access to the stored value, the bitline reads/writes the stored value.
 
 0
@@ -21,7 +22,7 @@ Week 1
 4
 What are the natural terms for the following logical operators: Negation, Complement, Conjunction, Disjunction, Exclusive Disjunction, Implication, Equivalence? 
 40
-Negation and Compliment are both NOT. Conjunction is AND, disjunction is OR,exc. disjunction is XOR. Implication and equivalence are already natural terms for it, so remember that implication: notA or B, and equivalence is (notAor B) and (notB or A). 
+Negation and Compliment are both NOT. Conjunction is AND, disjunction is OR,exc. disjunction is XOR. Implication and equivalence are already natural terms for it, so remember that implication: notA or B, and equivalence is (not A or B) and (not B or A), which can be thought of more simply as "not xor". 
 
 5
 How do you translate a truth table into Disjunctive Normal Form? 
@@ -34,9 +35,9 @@ How do you translate a truth table into Conjunctive Normal Form?
 For each 0 in the output column, AND all the values that produce it, then bracket that statement. Then NOT all your brackets, and then AND them. then use De Morgan's laws to make your brackets contain only OR statements. 
 
 7
-What are De Morgan's laws? 
-70  
-NOT(A and B) is equivalent to (NOTA and NOTB). NOT(A and B) is equivalent to (NOTA and NOTB).
+What are De Morgan's laws?
+70
+NOT(A and B) is equivalent to (NOTA or NOTB). NOT(A or B) is equivalent to (NOTA and NOTB).
 
 8
 What is the principle of distributivity?
@@ -44,9 +45,9 @@ What is the principle of distributivity?
 ||(A and B) or (A and C) = A and (B or C) || (A or B) and (A or C) = A or (Band C) || 
 
 9
-What's the shortcut to counting binary-reflected Gray code? (and where would you use it?)
+What's the shortcut to counting binary-reflected Gray code? Wnere would you use it?
 90
-In binary, start with all bits at zero and flip the right-most bit that produces a previously unseen combination. You use this when numbering rows and colums in Karnaugh maps. 
+In binary, start with all bits at zero and flip the right-most bit that produces a previously unseen combination. You use this when numbering rows and colums in Karnaugh maps.
 
 11
 An AND gate with a bubbled output is equal to what? An OR gate with a bubbled output is equal to what? 
@@ -166,9 +167,9 @@ How do you make an R-S latch?
 Use two NAND gates, which I will here call A and B. A is (S' NAND B), and B is (R' NAND A). The output of A, in addition to being fed into B, is Q, while the output of B is Q'.
 
 35
-What does a D latch do? 
+What does a D latch do?
 350
-It takes an input signal, D, and an active-low enable signal, en. While en is high, its output Q is D. When en is activated, it holds the previous output. 
+It takes input signals en and D. When en is high, it outputs D, and otherwise it holds the output. (In past papers, an "active high" D-latch has behaved this way, although this is all I will say on whether D latches are strictly active low or active high)
 
 36
 How do we build a D latch?
@@ -278,4 +279,92 @@ SDRAM is "synchronised dynamic RAM", and is DRAM that works on a clock circuit. 
 59
 What is DDR?
 590
-DDR stands for "Double Data Rate", and DDR1-5 are protocols for data storage to and from DRAM. They are not fundamentally different technologies to it. 
+DDR stands for "Double Data Rate", and DDR1-5 are protocols for data storage to and from DRAM. They are not fundamentally different technologies to it.
+
+61
+For data storage in bytes, how do the SI units work? 
+610
+Data storage SI units raise 2 to the power of a multiple of ten. A kilobyte is 2 to the 10 bytes, a megabite is 2 to the 20 bytes, a gigabyte is 2 to the 30 bites, a terabite is 2 to the 40 bytes, and a petabyte is 2 to the 50 bytes. These are somebimes respectively referred to as kibi, mebi, gibi, tebi and pebibytes. 
+
+62
+How do you calculate a log in base 2 if your calculator only works in log base b?
+620
+log2(x) = logb(x)/logb(2). 
+
+63
+True or false: logb(x) grows faster than x? How is the answer to this useful?
+630
+False! Logb(x) grows much slower than x as x increases. If log2(n) >= 50, than n >= a petabyte. Algorithms you'll see i ncode run on inputs of size n, wth time tht grows with log2(n).
+
+0
+Week 4
+
+64
+What is a counter? 
+640
+A counter stores and outputs a binary value that goes up by 1 on a rising edge. It takes a single input, reset, which puts the value on the counter to 0 if reset is set to 1 on a rising edge. 
+
+65
+How do we build a counter?
+650
+A register's Q signal goes to both our output and to an adder, which is also fed by a constant 1 signal. The output of this adder is fed into a multiplexer, along with a constant 0 signal. The control bit that chooses between these is our input. 
+
+66
+What is a one-shot, and when is it useful?
+660
+A one-shot has one input and one output (plus a clock). When input = 1, output = 1 for exactly one clock cycle, then reverts to 0. This happens regardless of what is happening to the input during that time. The system resets when output returns to 0. It's useful for technology activated by button presses, as a button press usually lasts for lots of clock cycles. 
+
+67
+What do we mean in terms of actual electrical signals when we say "0" and "1"? How do we represent this?
+670
+0 is a small range of low-voltage signals, called Vss. 1 is a range of higher voltage singals, called Vdd. The exact range of Vdd has changed over time as transistors have become more efficient, but was traditionally around 5 volts. 
+
+68
+What is a MOSFET (or MOS) transistor?
+680
+Metal Oxide Semiconductor Field Effect Transistors are made from silicon. They are one of two main transistor types along with BJTs (bipolar junction transistors). Silicon is a semiconductor, and so the conditions under which a MOSFET will tramsit charge can be altered via adding impurities during manufacturing. 
+
+69
+What is CMOS? 
+690
+CMOS stands for complementary metal-oxide semiconductor. CMOS technology connects a common source (either Vdd or Vss) to p and n type MOS transistors to create not-gates, which can be interlaced to create NAND and NOR gates. 
+
+71
+How do you create a NOR gate out of MOS transistors?
+710
+Input signal A connects to a p-type and n-type transistor, Ap and An. Input signal B does the same - Bp and Bn. Ap and Bp are connected to Vdd in series, meaning that if either A OR B are connected to Vdd, Vdd is cut off from the circuit. An and Bn are connected to Vss in parallel, meaning that as long as at least one of A or B is connected to Vdd, Vss will flow. Output Q therefore only outputs Vdd if both A and B are connected to Vss. 
+
+72
+How do you create a NAND gate out of transistors?
+720
+Input signal A connects to a p-type and n-type transistor, Ap and An. Input signal B does the same - Bp and Bn. Ap and Bp are connected to the Vdd signal in parallel, meaning that as long as A or B is connected to Vss, output q will be positive. Vss is connected to the output via An and Bn in series, meaning that Q can only transmit Vss if A and B are both connected to Vdd. 
+
+73
+Why are NAND gates the standard rather than NOR gates, since both are functionally complete?
+730
+P-type transistors are slower than n-type transistors, and transistors in series are slower than transistors in parallel. This means Vdd moves faster through a NAND gate, as the slow p-type transistors are in parallel. 
+
+74
+What is a circuit's "critical path"?
+740
+The path between the input and the output that has the longest delay. 
+
+75
+How do you construct SRAM out of transistors?
+750
+Assume positive transistors Ap and Bp and negatives An and Bn. Wire the negatives in parallel to Vss and vice versa, then wire Ap's output to An's, and likewise for Bp and Bn. We'll call the zones created between these transistors Q and Q' respectively. Take two n-type transistors, W1 and W2. Connect the output of W1 to the Q wire and the switches for Bp and Bn, and vice versa for W2. Both W1 and W2 are switched by the same "Wordline" input, and W1 connects to bitline, while "W2" connects to bitline'. 
+
+76
+How do you construct DRAM? 
+760
+Connect the capacitor to Vss and to an n-type transistor that connects it to the bitline. Connect the wordline to the switch of that transistor. 
+
+77
+What are the latency comparisons between SRAM, DRAM and Flip-Flops? How do they compare in terms of cost to build and power to run?
+770
+Flip flops make data available instantly at the output, so have very low latency, but require 12-30 transistors to build, which is expensive and power consumption. SRAM latency is a bit longer, but it only requires 4 to 6 transistors. DRAM has even more latency because it must wait for charge to move from the capacitor to the bitline, but only requires 1 transistor plus a capacitor.
+
+78
+What is 1 hertz?
+780
+1 hertz = 1 cycle per second.

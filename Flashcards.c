@@ -26,7 +26,7 @@ int main(void)
   srand(s);
 
   char* file = "cards.txt";
-  int max = 59; //suggest making a "maxfind" function to figure it out for you
+  int max = 78; //suggest making a "maxfind" function to figure it out for you
   int deck[ARB];
 
   deckfill(deck, max);
