@@ -1,0 +1,167 @@
+0
+Week 1
+
+1
+What are the two components of OpenSSH? How do they work together?
+10
+[ssh], a client you run on your machine, and [sshd], a daemon running in the background of the machine you want to connect to. When you type something on the client machine, ssh encrypts it and sends it to sshd, which decrypts it and passes it onto the shell of the target machine. Replies from the shell are sent from the daemon to the client in the same way. 
+
+2
+What are the naming conventions for private and public keys in ssh?
+20
+A private key is usually id_CIPHER and a public key is id_CIPHER.pub, with "CIPHER" being the cipher in use. 
+
+3
+If you're trying to create a keypair via ssh-keygen and you get an "unknown key type" error, what does this mean?
+30
+You are using an outdated version of OpenSSH. You should upgrade immediately for security reasons. 
+
+4
+On the command [ssh-keygen -t ed25519], what does each part of that command do?
+40
+ssh-keygen generates the key. The [-t] parameter selects the cryptographic algorithm to use, with ed25519 being the argument - it is the one bristol university suggets.
+
+5
+Name four cryptographic algorithms used in the generation of public keys.
+50
+[ed25519] is popular, widely reviewed and regarded as secure. [rsa] is a valid option for some older ssh versions that don't accept ed25519. [dsa] and [ecdsa] are to be avoided, as they are widely believed to have flaws. 
+
+6
+What does [known_hosts] in your [.ssh] folder do?
+60
+It stores the public keys of computers to which you've already connected. 
+
+7
+What is the etymology of the [chmod] command?
+70
+The "ch" is for change and "mod" is for "mod bits", a technical term for permissions. 
+
+8
+How do you use [chmod] to set access permissions for a file?
+80
+Since permissions are a bitfield of 9 binary bits, you can encode the desired settings as a three digit number in base 8, and append that to chmod. So for example, chmod 600 <filename> = chmod 110000000 <filename> = set user r and user w to 1 and all the rest to zero. 
+
+9
+For the ssh -v command, what is the -v doing?
+90
+"verbose", meaning it prints programming messages, useful for debugging. 
+
+11
+For [ssh -A] command, what is the -A doing? 
+110
+running "Agent Forwarding", a ssh feature which means that when you ssh into one machine, and try to ssh into another machine from there, it will use the same keys. This means you don't have to upload your private key to the middle machine. 
+
+12
+How do key pairs work to verify ssh connections?
+120
+When you ssh into a machine, it uses your public key to encrypt some random data and sends it to your machine. Your machine uses the public key to decrypt it, and sends it back, so the target machine can confirm that it got back the same string of random data it generated. Since the encryption and decryption algorithms are asymmetric (different), the target computer only learnsthe encryption algorithm and never the decryption algorithm. The private key, storing the decryption algorithm, stays on your computer. 
+
+13
+What is a jump host in ssh? How would you reference one in commands?
+130
+You can connect to a target host via a jump host in the middle. You'd do this by using the -J flag, and going: ssh -A -J <jump host> <target host> (assuming that you want to use agent forwarding)
+
+14
+What is the POSIX /etc file folder for?
+140
+Generally for global settinges, ie, your ssh_config file for all users. 
+
+15
+On a linux system, [cd /] takes you where?
+150
+The root folder. 
+
+16
+On a linux system, [cd ~] takes you where?
+160
+/home/<your username>
+
+17
+What is typically stored in /bin on a linux system?
+170
+"Binaries" - programs that you can run. 
+
+18
+What does the which commmand do in bash?
+180
+which <command> returns the path from root to the location where that command's code is stored.
+
+19
+What is typically stored in /usr on a linux system? 
+190
+This is a bit unclear as it's emerged from historical accident; in practice it contains read-only data, like programs and config files. It often contans subfolders that duplicate folders in the root directory. Note that Debian makes its /bin folder a link to /usr/bin, to avoid that duplication. 
+
+21
+When you list the contents of a folder with the ls -l command, before the 9bit privacy bitfield, there is a character right at the start of the line. What does this mean?
+210
+- indicates a file, d indicatse a directory, l indicates a "soft link"
+
+22
+What is typically stored in /etc on a linux system? 
+220
+System-wide configuration files. Note that only the administrator account can change things in here. 
+
+23
+What is typically stored in /lib in a linux system?
+230
+Dynamic libraries, called .dll on windows or .so on POSIX. These include things like the C library. 
+
+24
+What is typically stored in /home in a linux system?
+240
+This contains the home directories of users, except the administrator account.
+
+25
+What is typically storied in /root in a linux system?
+250
+this is the home directory of the administrator account.  
+
+26
+What is typically stored in /sbin in a linux system?
+260
+this is "system binaries", anothr collection of programs, although typically ones that only system administrators would use. 
+
+27
+What is typically stored in /tmp in a linux system?
+270
+Information that does not need to survive rebooting the machine. /tmp is a temporary system that may be stored in RAM rather than on disk. 
+
+28
+What is typically stored in /var on a linux system?
+280
+Files like logs or caches that vary over time. 
+
+29
+What are /dev, /sys and /proc in linux? 
+290
+these are virtual file systems that reflect UNIX's design principle that almost every interaction with the operating system should look like reading from/writing to a file. For example, on some laptop systems, writing to a file in /sys changes the screen brightness. dev interfaces wtih devies, proc accesses running processes, and sys accesses system functions. 
+
+31
+What is the FHS?
+310
+The "Filesystem Hierarchy Standard", a document of how files and folders are typically organized in a linux system. 
+
+32
+What does the sudo command do?
+320
+It allows you to run a command as the administrator. Depending on how your system is set up this may be not allowed or password-protected. 
+
+33
+What does the sudo bash command do?
+330
+Sudo bash changes the $ prompt to #. This means you are now issuing commands as the adminstrator. It is generally good practice to not do this and issue regular sudo commands whenever possible.
+
+34
+What is apt?
+340
+apt is Debian's package manager. 
+
+35
+what does the command [sudo apt update] do?
+350
+Fetches the new package list (from a particular repository or for all repositories you have packages from?), and downloads any updated versions to your local package list. 
+
+36
+What does the command sudo apt upgrade do?
+360
+Updates all packages you have installed to the latest version in your local package list. 

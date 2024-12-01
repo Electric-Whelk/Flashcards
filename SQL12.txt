@@ -1,0 +1,55 @@
+1
+What puts a database into first normal form?
+10
+A database is in 1NF when no columns contain multiple values per row. 
+
+2
+What puts a database into second normal form?
+20
+A database is in 2NF when its attributes all depend on the entirety of the primary key.
+
+3
+What puts a database into third normal form?
+30
+A database is in 3NF when it has a key that depends on the primary key via a non-primary key. 
+
+4
+In database theory, what is functional dependency?
+40
+An attribute Y is dependent on Y if any two entities with identical values of X have identical values of Y. 
+
+5
+What is the format for creating a table in Sqlite3? 
+50
+CREATE TABLE <name> (attribute <TYPE>, attribute <TYPE>, ... attribute <TYPE>); 
+
+6
+What is the format for inputing data into a table in Sqlite3?
+60
+INSERT INTO <tablename> VALUES(<entry>, <entry>, ... <entry>), (<entry>, <entry>, ... <entry>); 
+
+7
+what is the format for seeing some attributes from a table in Sqlite3?
+70
+SELECT <attribute name>, ... <attribute name> FROM <table name>;
+
+8
+What are the 7 data types in Sqlite3?
+80
+Int/Integer (whole numbers), text (Strings), blob (could by anything), real (floating point numbers), decimal(x,y) (a decimal number of x digits, y of which are after the decimal point), character/varchar(n) (a string of n characters/up to n characters), date/datetime (a timestamp), boolean (duh) 
+
+9
+what are the 4 constraints you can assign to attributes when creating a table in Sqlite3?
+90
+Not Null (attribute can't be blank), unique (no other row can have the same value), check () (run a check that it meets a condition), primary key (not null and unique)
+
+11
+How do you declare foreign and primary keys when defining a table?
+110
+When creating the table, re-state the primary key attributse with "PRIMARY KEY(att1, att2)" and the foreign key attribute(s) with any number of entries of FOREIGN KEY(<attribute>) REFERENCES <othertable><attribute>
+
+12
+What are the 4 (overlapping) types of key?
+120
+Candidate Key - minimal set of attributes that uniquely refer to an entity; Primary Key - the key we use; Composite Key - a key containing multiple attributes; Surrogate Key - a meaningless id number used for the sake of having a key.
+

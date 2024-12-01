@@ -6,7 +6,8 @@
 #include <assert.h>
 #include <time.h>
 
-#define ARB 700
+#define ARB 10000 
+#define QUESTIONS 3
 
 bool fetch(char* source, int i);
 int rnjesus(int max); //improve your randomisation so you don't have to remake every time you run it).
@@ -14,19 +15,23 @@ void deckfill(int* array, int max);
 void shuffle(int* array, int max);
 void strint(int x, char* outp);
 void test(void);
-
 void strinttest(void);
 
 
-int main(void)
+int main(int argc, char *argv[])
 {
+  printf("Initializing main...\n");//testprint
+  if(argc != 2){
+    fprintf(stderr, "Please supply an argument file.\n");
+    exit(EXIT_FAILURE);
+  }
   printf("\n");
   test();
   time_t s = time(NULL);
   srand(s);
 
-  char* file = "cards.txt";
-  int max = 78; //suggest making a "maxfind" function to figure it out for you
+  char* file = argv[1];
+  int max = QUESTIONS; //suggest making a "maxfind" function to figure it out for you
   int deck[ARB];
 
   deckfill(deck, max);
@@ -166,6 +171,3 @@ void strinttest(void)
   assert(strcmp(fill, "276\n") == 0);
 
 }
-    
-
-  
