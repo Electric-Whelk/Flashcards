@@ -1,4 +1,10 @@
 1
 Assume main has commits A B C D E; after commit c, a branch was formed which has commits F G H I J. What happens if you go to branch main and merge them?
 10
-Main gets a new commit, ("K"), which has both E and J as ancestors. 
+Main gets a new commit, ("K"), which has both E and J as ancestors.
+
+
+2
+Assume main has commits A B C D E; after commit c, a branch was formed which has commits F G H I J. What happens if you go to branch main and rebase them?
+20
+Head is now set to J, and Main's commits now go ABCDEFGHIJ 
