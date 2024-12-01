@@ -9,8 +9,8 @@ int main(int argc, char* argv[])
   time_t s = time(NULL);
   srand(s);
 
-  char* file = argv[0];
-  int max = 12; //suggest making a "maxfind" function to figure it out for you
+  char* file = argv[1];
+  int max = 78; //suggest making a "maxfind" function to figure it out for you
   int deck[ARB];
 
   deckfill(deck, max);
