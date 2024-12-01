@@ -12,3 +12,8 @@ Head is now set to J, and Main's commits now go ABCDEFGHIJ
 What two seperate commands make up git pull? 
 30
 git fetch and git merge origin/main
+
+4
+Why and how would you interactive git rebase?
+40
+git rebase -i <branch>  ; you can amend comments, merge commits and other things by changing the letter in front of the commit pointers.
