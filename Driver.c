@@ -4,6 +4,10 @@
 int main(int argc, char* argv[])
 {
 
+  if(argc != 2){
+    fprintf(stderr, "Please enter exactly one file");
+    exit(EXIT_FAILURE);
+  }
   printf("\n");
   test();
   time_t s = time(NULL);
