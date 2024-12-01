@@ -1,62 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
-#include <stdbool.h>
-#include <assert.h>
-#include <time.h>
-
-#define ARB 10000 
-
-
-bool fetch(char* source, int i);
-int rnjesus(int max); //improve your randomisation so you don't have to remake every time you run it).
-void deckfill(int* array, int max); 
-void shuffle(int* array, int max);
-void strint(int x, char* outp);
-void test(void);
-void strinttest(void);
-
-int main(void)
-{
-
-  printf("\n");
-  test();
-  time_t s = time(NULL);
-  srand(s);
-
-  char* file = "SQL12.txt";
-  int max = 12; //suggest making a "maxfind" function to figure it out for you
-  int deck[ARB];
-
-  deckfill(deck, max);
-  shuffle(deck, max);
-
-  printf("\n");
-
-  for(int i = 1; i < max; i++){
-    int q = deck[i];
-    int test = q % 10;
-    if(test != 0){
-      fetch(file, q);
-      printf("\nHit any letter + enter key for answer (or ctrl+c to quit): \n");
-      char response;
-      scanf("%c ", &response);
-      printf("\n");
-      int a = q * 10;
-      fetch(file, a);
-      printf("Hit any letter key +enter key for next question (or ctrl+c to quit): \n");
-      char response2;
-      scanf("%c ", &response2);
-      printf("\n\n\n\n");
-
-    }
-  }
-  printf("\nDeck complete!\n");
-  
-  printf("\n");
-  return 0;
-}
+#include 'flashcards.h'
 
 void test(void)
 {
@@ -162,4 +104,26 @@ void strinttest(void)
   strint(276, fill);
   assert(strcmp(fill, "276\n") == 0);
 
+}
+
+void run(char* file, int max, int* deck)
+{
+  for(int i = 1; i < max; i++){
+  int q = deck[i];
+  int test = q % 10;
+  if(test != 0){
+    fetch(file, q);
+    printf("\nHit any letter + enter key for answer (or ctrl+c to quit): \n");
+    char response;
+    scanf("%c ", &response);
+    printf("\n");
+    int a = q * 10;
+    fetch(file, a);
+    printf("Hit any letter key +enter key for next question (or ctrl+c to quit): \n");
+    char response2;
+    scanf("%c ", &response2);
+    printf("\n\n\n\n");
+
+    }
+  }
 }
