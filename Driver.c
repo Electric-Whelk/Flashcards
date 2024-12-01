@@ -1,7 +1,7 @@
 #include "Flashcards.h"
 #define ARB 10000
 
-int main(void)
+int main(int argc, char* argv[])
 {
 
   printf("\n");
@@ -9,7 +9,7 @@ int main(void)
   time_t s = time(NULL);
   srand(s);
 
-  char* file = "SQL12.txt";
+  char* file = argv[0];
   int max = 12; //suggest making a "maxfind" function to figure it out for you
   int deck[ARB];
 
