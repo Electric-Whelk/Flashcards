@@ -1,4 +1,4 @@
-#include 'flashcards.h'
+#include "Flashcards.h"
 
 void test(void)
 {
@@ -48,7 +48,6 @@ bool fetch(char* source, int i)
   bool targ = false;
 
   strint(i, cast);
-  int lcast = strlen(cast); 
   while(fgets(reader, ARB, file)){
     if(reader[0] < '9' && reader[0] > '0'){
       if(strcmp(cast, reader) == 0){
