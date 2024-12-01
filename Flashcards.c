@@ -17,8 +17,6 @@ void strint(int x, char* outp);
 void test(void);
 void strinttest(void);
 
-//ADDING SOME TEXT, LET'S SEE IF I CAN MAKE IT DISAPPEAR
-
 int main(void)
 {
 
