@@ -1,7 +1,10 @@
 CC=gcc
 FLAGS = -Wall -Wextra -Wfloat-equal -Wvla -std=c99 -Wpedantic -fsanitize=undefined -fsanitize=address -g3
 
-.default: flashcards
+.default: safe
 
-flashcards: Flashcards.c Driver.c Flashcards.h
-	gcc Flashcards.c Driver.c $(FLAGS) -o Flashcards
+safe: Driver.c Flashcards.c Flashcards.h
+	$(CC) $(FLAGS) Driver.c flashcards.o 
+
+flashcards: Flashcards.c Flashcards.h
+	$(CC) $(FLAGS) -c Flashcards.c -o flashcards.o

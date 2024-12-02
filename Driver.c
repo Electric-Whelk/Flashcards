@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
   srand(s);
 
   char* file = argv[1];
-  int max = 78; //suggest making a "maxfind" function to figure it out for you
+  int max = 12; //suggest making a "maxfind" function to figure it out for you
   int deck[ARB];
 
   deckfill(deck, max);
