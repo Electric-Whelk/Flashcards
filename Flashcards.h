@@ -17,3 +17,4 @@ void strint(int x, char* outp);
 void test(void);
 void strinttest(void);
 void run(char* file, int max, int* deck);
+int bodgedmax(char* source);

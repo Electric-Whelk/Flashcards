@@ -80,7 +80,6 @@ void strint(int x, char* outp)
   i--;
 
 
-
   int tmp = 0;
   char p, q;
   while(x >= 10){
@@ -92,7 +91,9 @@ void strint(int x, char* outp)
     outp[i] = p;
     i--;
   }
+
   q = (char)x + '0';
+
   outp[i] = q;
 }
 
@@ -125,4 +126,32 @@ void run(char* file, int max, int* deck)
 
     }
   }
+}
+
+int bodgedmax(char* source)
+{
+  FILE* file = fopen(source, "r");
+  if(file == NULL){
+    fprintf(stderr, "Cannot open file %s\n", source);
+    exit(EXIT_FAILURE);
+  }
+  char top[ARB];
+  fgets(top, ARB, file);
+
+  fclose(file);
+
+  int i = 1;
+  bool halt = false;
+  while(halt == false && i < ARB){
+    char test[ARB];
+    strint(i, test);
+    if(strcmp(test, top) == 0){
+      halt = true;
+    }else{
+      i++;
+    }
+  }
+
+  return i;
+
 }
