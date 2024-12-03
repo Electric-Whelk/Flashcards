@@ -1,0 +1,9 @@
+1
+How do you set and call a variable in shell script?
+10
+variable="value" ||| the quotes aren't necessary but it's good practice as you'll often be dealing with multi word variables. Call it with $variable.
+
+2
+What are the six shell commands we've learned that are particularly useful in pipipes? What do they do?
+20
+cat [FILENAME [FILENAME]], whch writes 1 or more files to stdout. sort reads its input into a memory buffer, sorts it alphabetically, and writes it to stdout. uniq reads stdin to stdout, but skips repeated lines that follow each other. wc[-l] stands for word count, or line count with the l flag; it also outputs the size in bytes. Head and tail print respectively the first and last 10  (or another number if set) lines of a file. You can use an additional flag allegedly to make it skip the last/first two lines of its output and write the rest, but this has never worked for me. 
