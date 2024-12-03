@@ -17,3 +17,42 @@ git fetch and git merge origin/main
 Why and how would you interactive git rebase?
 40
 git rebase -i <branch>  ; you can amend comments, merge commits and other things by changing the letter in front of the commit pointers.
+
+5
+How do you do a gitignore? Why would you do this?
+50
+a gitignore file (.gitignore) contains a list of files which will not be included in commits, even if you do "git add .". You just need to enter the file name on the line. This is commonly used for executables, which different coders on the same project tend to compile indepenently. 
+
+6
+As far as you've learned, what are the two things you can do with git checkout?
+60
+You can use it to shift branches, and by entering at least the first six hex digits of a previous commit, can inspect previous versions.
+
+7
+What are your two options for undoing a commit, and how do they work/
+70
+Suppose you have commits A and B. git revert HASH(A) would add a new commit, C, that restores the status of A. git reset HASH(A) would move the head pointer back to A, and should not be done if you've pushed the changes.
+
+8
+what does a resource temprarily unavailable error mean when ssh'ing into Github?80
+It means that your set-up isn't passing on the redirection to the actual address of ssh.github.com. You can fix this by using ssh.github.com in place of github.com. 
+
+9
+what does git reflog do?
+90
+shows you all past actions, potentially including squahsed commits. 
+
+11
+What does git diff do?
+110
+Shows you the differences between two commits. 
+
+12
+What does git cherry-pick do?
+120
+Called with the hashes of some commits, it restores the changes implemented by these. 
+
+13
+What does git gc do?
+130
+Git gc automatically cleans up and optimizes the current repository. Use with caution. 
