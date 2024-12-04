@@ -7,3 +7,34 @@ variable="value" ||| the quotes aren't necessary but it's good practice as you'l
 What are the six shell commands we've learned that are particularly useful in pipipes? What do they do?
 20
 cat [FILENAME [FILENAME]], whch writes 1 or more files to stdout. sort reads its input into a memory buffer, sorts it alphabetically, and writes it to stdout. uniq reads stdin to stdout, but skips repeated lines that follow each other. wc[-l] stands for word count, or line count with the l flag; it also outputs the size in bytes. Head and tail print respectively the first and last 10  (or another number if set) lines of a file. You can use an additional flag allegedly to make it skip the last/first two lines of its output and write the rest, but this has never worked for me. 
+
+3
+How do you add a user and change into that user?
+30
+sudo adduser <name> ||| su <name>
+
+4
+How do you interpet the 10b bitfield in the Unix DAC (discretionary access command) in a file permission? How do you view them?
+40
+View them with ls-l. Bit[0] is the file type. The other three trios of bits represent permissions respectively for the user, the group and others, and can be set to r, w, x or - to indicate read permission, write permission, execute permission, or none o fthese. For example, drwxr----- would indicate a directory to which users have full permissions, groups can read from, and other users cannot do anything with. 
+
+5
+What are the file types, and how are they encoded in a 10b bitfield?
+50
+Regular file (-), block  file (b), directory (d), symbolic link (l), FIFO, (p), socket link (s), character block file (c).  
+
+
+6
+What other things beside x might be found in the the 3rd, 6th and 9th entry of a file bitfield?
+60
+s in the user or group trios means that thye can run as a UID/GID of onwer. t in the other trio means it's a sticky bit for an append only directory. 
+
+7
+What is the UID and GID of a file?
+70
+the UID is the owner and the GID is the group it belongs to. 
+
+8
+What do read/write/execute permissions mean on a directory?
+80
+read allows for ls of the directory's contents. write alow sfor creation and deletion of new files. execute allows for using chdir into that directory.
